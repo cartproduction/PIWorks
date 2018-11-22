@@ -16,7 +16,7 @@ namespace DistinctSongsLinq
             List<Music> list = ReadCsvModel();
             var countList = new List<int>();
 
-            var query = list.AsEnumerable().Select(c => new { SONG_ID = c.SONG_ID, CLIENT_ID = c.CLIENT_ID }).Distinct();
+            var query = list.AsEnumerable().Where(c => c.PLAY_TS.Contains("10/08/2016")).Select(c => new { SONG_ID = c.SONG_ID, CLIENT_ID = c.CLIENT_ID }).Distinct();
 
             foreach (var line in query.GroupBy(info => info.CLIENT_ID)
                         .Select(group => new {
